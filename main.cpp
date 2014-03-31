@@ -6,22 +6,22 @@
 void MainLoop();
 
 int
-main(void){
+main(void)
+{
+    // initialize binary precedence table
+    BinopPrecedenceCreate();
 
-  // initialize binary precedence table
-  BinopPrecedenceCreate();
+    // create ready-state
+    std::cout << "ready> ";
+    getNextToken();
 
-  // create ready-state
-  std::cout << "ready> ";
-  getNextToken();
+    // enter driver, and let driver handle rest
+    try{
+	MainLoop();
+    }
+    catch(Error& m){
+	m.print();
+    }
 
-  // enter driver, and let driver handle rest
-  try{
-    MainLoop();
-  }
-  catch(Error& m){
-    m.print();
-  }
-
-  return 0;
+    return 0;
 }
